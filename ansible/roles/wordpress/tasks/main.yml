@@ -1,0 +1,9 @@
+- name: Copy Docker Compose
+  copy:
+    src: docker/docker-compose.yml
+    dest: /home
+
+- name: Run Docker Compose
+  command: docker compose up -d
+  args:
+    chdir: /home

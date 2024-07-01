@@ -17,9 +17,9 @@ provisioner "local-exec" {
 
 provisioner "local-exec" {
     command = <<EOF
-      echo "[web_servers]" > hosts.ini
-      echo "${aws_instance.webserver.public_ip} ansible_ssh_private_key_file=demokey ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> hosts.ini
-      ansible-playbook -i hosts.ini installdocker.yml installwordpress.yml
+      echo "[web_servers]" > ansible/inventory/hosts.ini
+      echo "${aws_instance.webserver.public_ip} ansible_ssh_private_key_file=demokey ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> ansible/inventory/hosts.ini
+      ansible-playbook -i ansible/inventory/hosts.ini ansible/setup-playbook.yml
     EOF
   }
 }
